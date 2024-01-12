@@ -13,7 +13,7 @@ $oeuvre = null;
 foreach ($oeuvres as $o) {
 
     // intval permet de transformer l'id de l'URL en un nombre (exemple : "2" devient 2)
-    if ($o['oeuvre_id'] === intval($_GET['id'])) {
+    if ($o['id'] === intval($_GET['id'])) {
         $oeuvre = $o;
         break; // On stoppe le foreach si on a trouvé l'oeuvre
     }
@@ -25,9 +25,10 @@ if (is_null($oeuvre)) { ?>
     <h1>Oups !</h1>
     <p>L'oeuvre que vous recherchez n'existe pas.</p>
     <p>Vous allez être redirigé vers la page d'accueil dans 5 secondes.</p>
+    <img src="img\pulp.gif" alt="Oups">
 
 <?php
-    header("refresh:5;url=index.php");
+    header("refresh:3.5;url=index.php");
 } else {
     // Si l'oeuvre existe, on affiche ses informations
 ?>

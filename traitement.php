@@ -49,6 +49,8 @@ else {
     <p>Votre oeuvre a bien été ajoutée à la base de données.</p>
     <p>Vous allez être redirigé vers la page d'accueil dans 5 secondes.</p>
 
+    <img class="success-gif" src="img\dancing-toothless.gif" alt="Bravo">
+
 
 <?php 
 }

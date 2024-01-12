@@ -12,8 +12,6 @@ catch (Exception $e) {
     die('Erreur : ' . $e->getMessage());
 }
 
-//! MODIFIER OEUVRE_ID EN ID
-
 $sqlQuery = 'SELECT * FROM oeuvres';
 $oeuvrestatement = $mysqlClient->prepare($sqlQuery);
 $oeuvrestatement->execute();

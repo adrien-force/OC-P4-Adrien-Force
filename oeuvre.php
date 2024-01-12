@@ -2,11 +2,13 @@
     require 'header.php';
     require 'bdd.php';
 
-    // // Si l'URL ne contient pas d'id, on redirige sur la page d'accueil
-    // if(empty($_GET['id'])) {
-    //     header('Location: index.php');
-    // }
+     // Si l'URL ne contient pas d'id, on redirige sur la page d'accueil
+     if(empty($_GET['id'])) {
+         header('Location: index.php');
+    }
     
+    $oeuvre = null;
+
     // On parcourt les oeuvres du tableau afin de rechercher celle qui a l'id précisé dans l'URL
     foreach($oeuvres as $o) {
         
@@ -18,9 +20,16 @@
     }
 
     // Si aucune oeuvre trouvé, on redirige vers la page d'accueil
-    if(is_null($oeuvre)) {
-        header('Location: index.php');
-    }
+    if(is_null($oeuvre)) { ?>
+
+        <h1>Oups !</h1>
+        <p>L'oeuvre que vous recherchez n'existe pas.</p>
+        <p>Vous allez être redirigé vers la page d'accueil dans 5 secondes.</p>
+
+<?php
+        header("refresh:5;url=index.php");
+    } else {
+        // Si l'oeuvre existe, on affiche ses informations
 ?>
 
 <article id="detail-oeuvre">
@@ -36,4 +45,4 @@
     </div>
 </article>
 
-<?php require 'footer.php'; ?>
+<?php } require 'footer.php'; ?>

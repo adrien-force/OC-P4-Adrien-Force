@@ -1,25 +1,11 @@
 <?php
     require 'header.php';
+    require 'bdd.php';
 
     // // Si l'URL ne contient pas d'id, on redirige sur la page d'accueil
     // if(empty($_GET['id'])) {
     //     header('Location: index.php');
     // }
-
-    try {
-        $mysqlClient = new PDO(
-        'mysql:host=localhost;dbname=artbox;port=8888',
-        'admin',
-        'admin'
-        );
-    }
-    catch (Exception $e) {
-        die('Erreur : ' . $e->getMessage());
-    }
-    $sqlQuery = 'SELECT * FROM oeuvres';
-    $oeuvrestatement = $mysqlClient->prepare($sqlQuery);
-    $oeuvrestatement->execute();
-    $oeuvres = $oeuvrestatement->fetchAll(PDO::FETCH_ASSOC);
     
     // On parcourt les oeuvres du tableau afin de rechercher celle qui a l'id précisé dans l'URL
     foreach($oeuvres as $o) {

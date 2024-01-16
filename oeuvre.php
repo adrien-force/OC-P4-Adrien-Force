@@ -25,7 +25,9 @@ if (is_null($oeuvre)) { ?>
     <h1>Oups !</h1>
     <p>L'oeuvre que vous recherchez n'existe pas.</p>
     <p>Vous allez être redirigé vers la page d'accueil dans 5 secondes.</p>
-    <img src="img\pulp.gif" alt="Oups">
+
+    <!-- OPTIONAL : FUN -->
+    <!-- <img src="img\pulp.gif" alt="Oups"> -->
 
 <?php
     header("refresh:3.5;url=index.php");

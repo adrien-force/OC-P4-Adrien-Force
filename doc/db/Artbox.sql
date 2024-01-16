@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jan 12, 2024 at 05:49 PM
+-- Generation Time: Jan 16, 2024 at 03:45 PM
 -- Server version: 5.7.39
 -- PHP Version: 8.2.0
 
@@ -55,9 +55,7 @@ INSERT INTO `oeuvres` (`id`, `titre`, `description`, `artiste`, `image`) VALUES
 (13, 'Puffy Amalgamate', 'Donec semper a massa quis congue. In malesuada lorem ligula, ut posuere magna pulvinar in. Proin vitae enim gravida, commodo odio.', 'Sandro De Blasi', 'img/orfeas-green.png'),
 (14, 'Mirage', 'Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam iaculis lorem ac ex tristique egestas et nec sapien. Donec tincidunt id erat sit amet tempus. Nullam vel molestie dui. Duis a neque massa. Vivamus quis ornare lacus. Nullam eleifend condimentum egestas. Vivamus magna purus, fermentum mollis mauris sed, consectetur interdum libero. Duis interdum tortor tellus, eget sollicitudin quis.', 'Stéphanie Kaiser', 'img/steve-johnson-4.png'),
 (15, 'Blaue Gelbe Muster', 'Curabitur dui odio, porta vel tempor sed, consectetur vitae mi. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus nec.', 'Adelheid Von Schreiber', 'img/steve-johnson-3.png'),
-(24, 'Coin', 'Canard coin coin', 'Unknown', 'img\\canard.JPG'),
-(25, 'Banger', 'I like to move it', 'Rico', 'img\\banger.jpg'),
-(26, 'Aaaahhhh', 'Bou', 'Meme', 'img\\meme-2.jpeg');
+(26, 'Aaaahhhh', 'Bou', 'Meme', 'https://img-9gag-fun.9cache.com/photo/awMj25Q_700bwp.webp');
 
 --
 -- Indexes for dumped tables
@@ -77,7 +75,7 @@ ALTER TABLE `oeuvres`
 -- AUTO_INCREMENT for table `oeuvres`
 --
 ALTER TABLE `oeuvres`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

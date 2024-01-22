@@ -1,10 +1,13 @@
 <?php
-    require 'header.php';
-    require 'bdd.php';
+    require 'header.html';
+    require 'db_connection.php';
+    require 'oeuvreManager.php';
 ?>
 
 <div id="liste-oeuvres">
-    <?php foreach($oeuvres as $oeuvre): ?>
+    <?php 
+    $oeuvres = getAllOeuvres();
+    foreach($oeuvres as $oeuvre): ?>
         <article class="oeuvre">
             <a href="oeuvre.php?id=<?= $oeuvre['id'] ?>">
                 <img src="<?= $oeuvre['image'] ?>" alt="<?= $oeuvre['titre'] ?>">
@@ -14,4 +17,4 @@
         </article>
     <?php endforeach; ?>
 </div>
-<?php require 'footer.php'; ?>
+<?php require 'footer.html'; ?>

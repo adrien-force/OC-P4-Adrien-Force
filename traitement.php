@@ -1,6 +1,7 @@
 <?php
 
-require 'bdd.php';
+require 'db_connection.php';
+require 'oeuvreManager.php';
 
 $postData = $_POST;
 
@@ -10,26 +11,13 @@ if (!isset($postData['submit'])) {
 }
 
 //check if all fields are filled and if fields are valid
-//? refactor a tester
-if (empty($postData['titre']) || empty($postData['artiste']) || empty($postData['image']) || empty($postData['description']) || (!filter_var($postData['image'])) || (strlen($postData['description']) < 3) ) {
+if (empty($postData['titre']) || empty($postData['artiste']) || empty($postData['image']) || empty($postData['description']) || (!filter_var($postData['image'], FILTER_VALIDATE_URL)) || (strlen($postData['description']) < 3) ) {
     unset($postData['submit']);
     header('Location: ajouter.php?erreur=true');
 }
 
 else {
-    $titre = htmlspecialchars($postData['titre']);
-    $artiste = htmlspecialchars($postData['artiste']);
-    $image = htmlspecialchars($postData['image']);
-    $description = htmlspecialchars($postData['description']);
-
-    $sql = "INSERT INTO oeuvres (titre, artiste, image, description) VALUES (:titre, :artiste, :image, :description)";
-    $statement = $mysqlClient->prepare($sql);
-    $statement->execute([
-        ':titre' => $titre,
-        ':artiste' => $artiste,
-        ':image' => $image,
-        ':description' => $description
-    ]);
+    addOeuvre($postData['titre'], $postData['artiste'], $postData['image'], $postData['description']);
     header("refresh:5;url=index.php"); 
     require 'header.php';
     ?>

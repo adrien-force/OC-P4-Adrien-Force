@@ -1,13 +1,10 @@
 <?php
 
-require 'db_connection.php';
-require 'oeuvreManager.php';
-
-//need to start session to access it
+// Start session if not already started
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-
+//unset error message
 unset($_SESSION['error_message']);
 unset($_SESSION['postData']);
 
@@ -20,7 +17,6 @@ if (!isset($postData['submit'])) {
 }
 
 //check if all fields are filled and if fields are valid
-//TODO Message d'erreur en fonction de l'erreur dans $session
 if (empty($postData['titre'])) {
     $_SESSION['error_message'] = "Le champ 'Titre' est vide.";
     $_SESSION['postData'] = $postData;
@@ -48,6 +44,8 @@ if (empty($postData['description']) || strlen($postData['description']) < 3) {
     header('Location: ajouter.php?erreur=true');
     exit;
 }
+
+//if no error, add oeuvre to database
  else {
     addOeuvre($postData['titre'], $postData['artiste'], $postData['image'], $postData['description']);
     header("refresh:5;url=index.php"); 

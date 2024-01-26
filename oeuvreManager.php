@@ -1,8 +1,22 @@
 <?php
 
-require 'db_connection.php';
+
+function dbConnect() {
+    try {
+        $mysqlClient = new PDO(
+                'mysql:host=localhost;dbname=artbox;port=8888', 'root', 'root'
+        );
+        return $mysqlClient;
+    } catch (Exception $e) {
+        die('Erreur : ' . $e->getMessage());
+    }
+}
 
 function getAllOeuvres() {
+
+    if (!isset($mysqlClient)) {
+        $mysqlClient = dbConnect();
+    }
 
     try {
         global $mysqlClient;
@@ -18,6 +32,10 @@ function getAllOeuvres() {
 
 function getOeuvreByID($id) {
 
+    if (!isset($mysqlClient)) {
+        $mysqlClient = dbConnect();
+    }
+
     try {
         global $mysqlClient;
         $sqlQuery = 'SELECT * FROM oeuvres WHERE id = :id';
@@ -31,6 +49,10 @@ function getOeuvreByID($id) {
 }
 
 function addOeuvre($titre, $artiste, $image, $description) {
+
+    if (!isset($mysqlClient)) {
+        $mysqlClient = dbConnect();
+    }
 
     try {
         global $mysqlClient;

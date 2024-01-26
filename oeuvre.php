@@ -11,7 +11,7 @@ if (empty($_GET['id'])) {
 $oeuvre = getOeuvreByID($_GET['id']);
 
 // Si aucune oeuvre trouvé, on redirige vers la page d'accueil
-if (is_null($oeuvre)) { ?>
+if ($oeuvre == false ) { ?>
 
     <h1>Oups !</h1>
     <p>L'oeuvre que vous recherchez n'existe pas.</p>

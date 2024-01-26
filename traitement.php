@@ -3,6 +3,15 @@
 require 'db_connection.php';
 require 'oeuvreManager.php';
 
+//need to start session to access it
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+unset($_SESSION['error_message']);
+unset($_SESSION['postData']);
+
+
 $postData = $_POST;
 
 //check if form was submitted
@@ -11,15 +20,38 @@ if (!isset($postData['submit'])) {
 }
 
 //check if all fields are filled and if fields are valid
-if (empty($postData['titre']) || empty($postData['artiste']) || empty($postData['image']) || empty($postData['description']) || (!filter_var($postData['image'], FILTER_VALIDATE_URL)) || (strlen($postData['description']) < 3) ) {
-    unset($postData['submit']);
+//TODO Message d'erreur en fonction de l'erreur dans $session
+if (empty($postData['titre'])) {
+    $_SESSION['error_message'] = "Le champ 'Titre' est vide.";
+    $_SESSION['postData'] = $postData;
     header('Location: ajouter.php?erreur=true');
+    exit;
 }
 
-else {
+if (empty($postData['artiste'])) {
+    $_SESSION['error_message'] = "Le champ 'Artiste' est vide.";
+    $_SESSION['postData'] = $postData;
+    header('Location: ajouter.php?erreur=true');
+    exit;
+}
+
+if (empty($postData['image']) || !filter_var($postData['image'], FILTER_VALIDATE_URL)) {
+    $_SESSION['error_message'] = "Le champ 'Image' est vide ou contient une URL invalide.";
+    $_SESSION['postData'] = $postData;
+    header('Location: ajouter.php?erreur=true');
+    exit;
+}
+
+if (empty($postData['description']) || strlen($postData['description']) < 3) {
+    $_SESSION['error_message'] = "Le champ 'Description' est vide ou contient moins de 3 caractères.";
+    $_SESSION['postData'] = $postData;
+    header('Location: ajouter.php?erreur=true');
+    exit;
+}
+ else {
     addOeuvre($postData['titre'], $postData['artiste'], $postData['image'], $postData['description']);
     header("refresh:5;url=index.php"); 
-    require 'header.php';
+    require 'header.html';
     ?>
 
     <h1>Bravo !</h1>
